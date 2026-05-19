@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
+import { auth, db } from '../../../firebase';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
 import {
   Facebook, Video, Calendar, BarChart2, FileText, LogOut, PawPrint,
   Sparkles, Copy, CheckCircle, Send, Plus, Clock, Users, Eye, Heart,
@@ -233,13 +236,24 @@ export function AdminDashboard() {
   const [copiedLink, setCopiedLink] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!localStorage.getItem('pdc_admin')) {
-      navigate('/admin');
-    }
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        navigate('/admin');
+        return;
+      }
+
+      const adminDoc = await getDoc(doc(db, 'admins', user.uid));
+      if (!adminDoc.exists()) {
+        await signOut(auth);
+        navigate('/admin');
+      }
+    });
+
+    return unsubscribe;
   }, [navigate]);
 
-  const handleLogout = () => {
-    localStorage.removeItem('pdc_admin');
+  const handleLogout = async () => {
+    await signOut(auth);
     navigate('/admin');
   };
 

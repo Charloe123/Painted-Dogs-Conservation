@@ -1,6 +1,10 @@
 import { useState } from 'react';
+import type { FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router';
 import { motion } from 'motion/react';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { auth, db } from '../../../firebase';
 import { Lock, Mail, Eye, EyeOff, PawPrint, AlertCircle } from 'lucide-react';
 
 export function AdminLogin() {
@@ -11,21 +15,49 @@ export function AdminLogin() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Demo credentials
-  const DEMO_EMAIL = 'admin@painteddog.org';
-  const DEMO_PASSWORD = 'admin123';
-
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
-    await new Promise(r => setTimeout(r, 1200));
-    if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
-      localStorage.setItem('pdc_admin', 'true');
-      navigate('/admin/dashboard');
-    } else {
-      setError('Invalid email or password. Use demo: admin@painteddog.org / admin123');
+
+    try {
+      const credential = await signInWithEmailAndPassword(auth, email, password);
+      const user = credential.user;
+      const adminDoc = await getDoc(doc(db, 'admins', user.uid));
+
+      if (!adminDoc.exists()) {
+        await signOut(auth);
+        setError('You are signed in but not authorized to access the admin dashboard. Contact the site owner.');
+      } else {
+        localStorage.setItem('pdc_admin', 'true');
+        navigate('/admin/dashboard');
+      }
+    } catch (err) {
+      const e = err as any;
+      // Provide friendly messages for common Firebase Auth errors
+      if (e && e.code) {
+        switch (e.code) {
+          case 'auth/user-not-found':
+            setError('No account found with that email.');
+            break;
+          case 'auth/wrong-password':
+            setError('Incorrect password.');
+            break;
+          case 'auth/invalid-credential':
+            setError('Invalid credentials provided. Please try again.');
+            break;
+          case 'auth/network-request-failed':
+            setError('Network error. Check your connection and try again.');
+            break;
+          default:
+            setError('Unable to sign in. Please check your email and password.');
+        }
+      } else {
+        const message = err instanceof Error ? err.message : String(err);
+        setError(`Unable to sign in. ${message}`);
+      }
     }
+
     setLoading(false);
   };
 
