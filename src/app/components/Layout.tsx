@@ -37,19 +37,21 @@ export function Layout() {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-[#f5f1e8] flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
-      <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#2c1810] shadow-2xl' : 'bg-[#2c1810]'}`}>
+      <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-black shadow-2xl' : 'bg-black'}`}>
         <div className="container mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-[#d97836] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                <PawPrint className="w-5 h-5 md:w-6 md:h-6 text-white" />
-              </div>
+              <img
+                src="https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578020/PDC_Logo_Web_f02zxx.png"
+                alt="Painted Dog Conservation Logo"
+                className="w-10 h-10 md:w-12 md:h-12 object-contain group-hover:scale-110 transition-transform"
+              />
               <div>
                 <div className="text-white font-bold text-base md:text-lg leading-tight">Painted Dog Conservation</div>
-                <div className="text-[#d97836] text-xs hidden sm:block">Zimbabwe · Est. 1992</div>
+                <div className="text-[#ef702a] text-xs hidden sm:block">Zimbabwe · Est. 1992</div>
               </div>
             </Link>
 
@@ -63,7 +65,7 @@ export function Layout() {
                     onMouseEnter={() => setDropdown(link.label)}
                     onMouseLeave={() => setDropdown(null)}
                   >
-                    <button className="flex items-center gap-1 text-white/90 hover:text-[#d97836] px-4 py-2 rounded-lg transition-colors text-sm font-medium">
+                    <button className="flex items-center gap-1 text-white/90 hover:text-[#ef702a] px-4 py-2 rounded-lg transition-colors text-sm font-medium">
                       {link.label}
                       <ChevronDown className="w-4 h-4" />
                     </button>
@@ -79,7 +81,7 @@ export function Layout() {
                             <Link
                               key={child.href}
                               to={child.href}
-                              className="block px-4 py-3 text-[#2c1810] hover:bg-[#f5f1e8] hover:text-[#d97836] transition-colors text-sm font-medium border-b border-[#f0e8d8] last:border-0"
+                              className="block px-4 py-3 text-black hover:bg-white hover:text-[#ef702a] transition-colors text-sm font-medium border-b border-gray-200 last:border-0"
                             >
                               {child.label}
                             </Link>
@@ -92,7 +94,7 @@ export function Layout() {
                   <Link
                     key={link.href}
                     to={link.href!}
-                    className={`text-white/90 hover:text-[#d97836] px-4 py-2 rounded-lg transition-colors text-sm font-medium ${location.pathname === link.href ? 'text-[#d97836]' : ''}`}
+                    className={`text-white/90 hover:text-[#ef702a] px-4 py-2 rounded-lg transition-colors text-sm font-medium ${location.pathname === link.href ? 'text-[#ef702a]' : ''}`}
                   >
                     {link.label}
                   </Link>
@@ -100,7 +102,7 @@ export function Layout() {
               )}
               <Link
                 to="/donate"
-                className="ml-2 bg-[#d97836] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#c46a2f] transition-all hover:scale-105 shadow-lg"
+                className="ml-2 bg-[#ef702a] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#ff6600] transition-all hover:scale-105 shadow-lg"
               >
                 Donate Now
               </Link>
@@ -129,18 +131,18 @@ export function Layout() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="lg:hidden overflow-hidden bg-[#1e0f09] border-t border-white/10"
+              className="lg:hidden overflow-hidden bg-black border-t border-white/10"
             >
               <div className="px-4 py-4 space-y-1">
                 {navLinks.map((link) =>
                   link.children ? (
                     <div key={link.label}>
-                      <div className="text-[#d97836] text-xs font-semibold px-3 pt-3 pb-1 uppercase tracking-wider">{link.label}</div>
+                      <div className="text-[#ef702a] text-xs font-semibold px-3 pt-3 pb-1 uppercase tracking-wider">{link.label}</div>
                       {link.children.map((child) => (
                         <Link
                           key={child.href}
                           to={child.href}
-                          className="block px-3 py-2 text-white/80 hover:text-[#d97836] text-sm transition-colors"
+                          className="block px-3 py-2 text-white/80 hover:text-[#ef702a] text-sm transition-colors"
                         >
                           {child.label}
                         </Link>
@@ -150,14 +152,14 @@ export function Layout() {
                     <Link
                       key={link.href}
                       to={link.href!}
-                      className="block px-3 py-2 text-white/80 hover:text-[#d97836] text-sm transition-colors"
+                      className="block px-3 py-2 text-white/80 hover:text-[#ef702a] text-sm transition-colors"
                     >
                       {link.label}
                     </Link>
                   )
                 )}
                 <div className="pt-3 flex flex-col gap-2">
-                  <Link to="/donate" className="bg-[#d97836] text-white px-5 py-3 rounded-full text-sm font-semibold text-center">
+                  <Link to="/donate" className="bg-[#ef702a] text-white px-5 py-3 rounded-full text-sm font-semibold text-center">
                     Donate Now
                   </Link>
                   <Link to="/admin" className="border border-white/30 text-white/70 px-5 py-3 rounded-full text-sm text-center">
@@ -176,15 +178,17 @@ export function Layout() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#2c1810] text-white">
+      <footer className="bg-black text-white">
         <div className="container mx-auto px-6 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
             {/* Brand */}
             <div className="lg:col-span-2">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-[#d97836] rounded-full flex items-center justify-center">
-                  <PawPrint className="w-5 h-5 text-white" />
-                </div>
+                <img
+                  src="https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578020/PDC_Logo_Web_f02zxx.png"
+                  alt="Painted Dog Conservation Logo"
+                  className="w-10 h-10 object-contain"
+                />
                 <span className="font-bold text-lg">Painted Dog Conservation</span>
               </div>
               <p className="text-white/60 text-sm leading-relaxed mb-6">
@@ -201,7 +205,7 @@ export function Layout() {
                     key={label}
                     href="#"
                     aria-label={label}
-                    className="w-9 h-9 bg-white/10 hover:bg-[#d97836] rounded-full flex items-center justify-center transition-all hover:scale-110"
+                    className="w-9 h-9 bg-white/10 hover:bg-[#ef702a] rounded-full flex items-center justify-center transition-all hover:scale-110"
                   >
                     <Icon className="w-4 h-4" />
                   </a>
@@ -211,7 +215,7 @@ export function Layout() {
 
             {/* Quick Links */}
             <div>
-              <h4 className="font-semibold text-[#d97836] mb-4 text-sm uppercase tracking-wider">About</h4>
+              <h4 className="font-semibold text-[#ef702a] mb-4 text-sm uppercase tracking-wider">About</h4>
               <ul className="space-y-2.5 text-sm text-white/70">
                 {[
                   ['Who We Are', '/who-we-are'],
@@ -220,14 +224,14 @@ export function Layout() {
                   ['Our Team', '/who-we-are'],
                 ].map(([label, href]) => (
                   <li key={label}>
-                    <Link to={href} className="hover:text-[#d97836] transition-colors">{label}</Link>
+                    <Link to={href} className="hover:text-[#ef702a] transition-colors">{label}</Link>
                   </li>
                 ))}
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold text-[#d97836] mb-4 text-sm uppercase tracking-wider">Resources</h4>
+              <h4 className="font-semibold text-[#ef702a] mb-4 text-sm uppercase tracking-wider">Resources</h4>
               <ul className="space-y-2.5 text-sm text-white/70">
                 {[
                   ['Our Blog', '/blog'],
@@ -236,29 +240,29 @@ export function Layout() {
                   ['Donate', '/donate'],
                 ].map(([label, href]) => (
                   <li key={label}>
-                    <Link to={href} className="hover:text-[#d97836] transition-colors">{label}</Link>
+                    <Link to={href} className="hover:text-[#ef702a] transition-colors">{label}</Link>
                   </li>
                 ))}
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold text-[#d97836] mb-4 text-sm uppercase tracking-wider">Contact</h4>
+              <h4 className="font-semibold text-[#ef702a] mb-4 text-sm uppercase tracking-wider">Contact</h4>
               <ul className="space-y-3 text-sm text-white/70">
                 <li className="flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-[#d97836] mt-0.5 shrink-0" />
+                  <MapPin className="w-4 h-4 text-[#ef702a] mt-0.5 shrink-0" />
                   <span>Hwange National Park, Zimbabwe</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-[#d97836] shrink-0" />
-                  <a href="mailto:info@painteddog.org" className="hover:text-[#d97836] transition-colors">info@painteddog.org</a>
+                  <Mail className="w-4 h-4 text-[#ef702a] shrink-0" />
+                  <a href="mailto:info@painteddog.org" className="hover:text-[#ef702a] transition-colors">info@painteddog.org</a>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-[#d97836] shrink-0" />
+                  <Phone className="w-4 h-4 text-[#ef702a] shrink-0" />
                   <span>+263 13 42 069</span>
                 </li>
               </ul>
-              <Link to="/contact" className="mt-4 inline-block bg-[#d97836] text-white px-4 py-2 rounded-full text-xs font-semibold hover:bg-[#c46a2f] transition-all">
+              <Link to="/contact" className="mt-4 inline-block bg-[#ef702a] text-white px-4 py-2 rounded-full text-xs font-semibold hover:bg-[#ff6600] transition-all">
                 Contact Us
               </Link>
             </div>

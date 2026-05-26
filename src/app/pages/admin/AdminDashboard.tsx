@@ -10,6 +10,7 @@ import {
   Share2, MessageCircle, Menu, X, RefreshCw, Trash2, Edit3, Bell,
   TrendingUp, BookOpen, Mic, ChevronRight, ArrowUpRight
 } from 'lucide-react';
+import { ImageUploader } from '../../components/ui/ImageUploader';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 type Tab = 'overview' | 'ai-content' | 'meetings' | 'calendar' | 'blog' | 'analytics';
@@ -912,13 +913,18 @@ export function AdminDashboard() {
 // ── Blog Manager Component ─────────────────────────────────────────────────
 function BlogManager() {
   const [drafts, setDrafts] = useState([
-    { id: 1, title: 'New Pack Discovery in Hwange', status: 'published', date: '2026-04-15', views: 1240 },
-    { id: 2, title: 'Education Centre Q1 Report', status: 'draft', date: '2026-04-22', views: 0 },
-    { id: 3, title: 'GPS Tracking Season 2026', status: 'scheduled', date: '2026-04-28', views: 0 },
+    { id: 1, title: 'New Pack Discovery in Hwange', status: 'published', date: '2026-04-15', views: 1240, image: '' },
+    { id: 2, title: 'Education Centre Q1 Report', status: 'draft', date: '2026-04-22', views: 0, image: '' },
+    { id: 3, title: 'GPS Tracking Season 2026', status: 'scheduled', date: '2026-04-28', views: 0, image: '' },
   ]);
   const [newTitle, setNewTitle] = useState('');
   const [newContent, setNewContent] = useState('');
+  const [newImage, setNewImage] = useState('');
   const [showEditor, setShowEditor] = useState(false);
+
+  const handleImageUpload = (url: string) => {
+    setNewImage(url);
+  };
 
   return (
     <div className="space-y-4">
@@ -936,14 +942,25 @@ function BlogManager() {
               value={newContent}
               onChange={e => setNewContent(e.target.value)}
               placeholder="Write your blog post content here..."
-              rows={8}
+              rows={6}
               className="w-full border-2 border-[#e8ddd0] rounded-xl px-4 py-3 text-[#2c1810] text-sm focus:outline-none focus:border-[#d97836] transition-colors resize-none"
             />
+            <div>
+              <label className="block text-sm font-semibold text-[#2c1810] mb-2">Featured Image</label>
+              <ImageUploader 
+                onUpload={handleImageUpload} 
+                folder="blog"
+                buttonText={newImage ? 'Change Image' : 'Upload Image'}
+              />
+              {newImage && (
+                <img src={newImage} alt="Featured" className="mt-3 max-h-40 rounded-lg object-cover" />
+              )}
+            </div>
             <div className="flex gap-3">
               <button
                 onClick={() => {
-                  setDrafts(d => [...d, { id: Date.now(), title: newTitle || 'Untitled', status: 'draft', date: new Date().toISOString().split('T')[0], views: 0 }]);
-                  setNewTitle(''); setNewContent(''); setShowEditor(false);
+                  setDrafts(d => [...d, { id: Date.now(), title: newTitle || 'Untitled', status: 'draft', date: new Date().toISOString().split('T')[0], views: 0, image: newImage }]);
+                  setNewTitle(''); setNewContent(''); setNewImage(''); setShowEditor(false);
                 }}
                 className="bg-[#d97836] text-white px-6 py-2.5 rounded-xl font-semibold text-sm hover:bg-[#c46a2f] transition-all"
               >
@@ -963,9 +980,14 @@ function BlogManager() {
       )}
       {drafts.map(draft => (
         <div key={draft.id} className="bg-white rounded-2xl p-5 shadow-sm flex items-center gap-4 hover:shadow-md transition-all">
-          <div className="w-10 h-10 bg-[#f5f1e8] rounded-xl flex items-center justify-center shrink-0">
-            <BookOpen className="w-5 h-5 text-[#8b6f47]" />
-          </div>
+          {draft.image && (
+            <img src={draft.image} alt={draft.title} className="w-16 h-16 rounded-lg object-cover shrink-0" />
+          )}
+          {!draft.image && (
+            <div className="w-10 h-10 bg-[#f5f1e8] rounded-xl flex items-center justify-center shrink-0">
+              <BookOpen className="w-5 h-5 text-[#8b6f47]" />
+            </div>
+          )}
           <div className="flex-1 min-w-0">
             <div className="flex flex-wrap items-center gap-2 mb-1">
               <h3 className="font-semibold text-[#2c1810] text-sm">{draft.title}</h3>
