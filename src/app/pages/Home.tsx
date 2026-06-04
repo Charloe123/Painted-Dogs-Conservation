@@ -40,11 +40,9 @@ export function Home() {
       {/* Hero Section */}
       <section className="relative h-[85vh] min-h-[500px] overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src="https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578016/image-asset_gcfb4o.jpg"
-            alt="Painted dogs in the wild"
-            className="w-full h-full object-cover"
-          />
+          <video autoPlay loop playsInline className="w-full h-full object-cover">
+            <source src="https://res.cloudinary.com/dpahyb1x9/video/upload/v1780406485/What_is_Painted_Dog_Conservation_all_about__jgzyf0.mp4" type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-black/60" />
         </div>
         {/* Scroll indicator */}

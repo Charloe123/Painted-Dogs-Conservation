@@ -29,13 +29,11 @@ export function WhoWeAre() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative h-72 md:h-96 overflow-hidden">
-        <ImageWithFallback
-          src="https://images.unsplash.com/photo-1670259182436-049da7055bc3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aWxkbGlmZSUyMGNvbnNlcnZhdGlvbiUyMHRlYW0lMjBaaW1iYWJ3ZSUyMEFmcmljYXxlbnwxfHx8fDE3NzY5NzMwNzd8MA&ixlib=rb-4.1.0&q=80&w=1080"
-          alt="Conservation team"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-[#2c1810]/70 flex items-center">
+       <section className="relative h-72 md:h-96 overflow-hidden">
+         <video autoPlay loop playsInline className="w-full h-full object-cover" title="What is Painted Dog Conservation all about">
+           <source src="https://res.cloudinary.com/dpahyb1x9/video/upload/v1780406485/What_is_Painted_Dog_Conservation_all_about__jgzyf0.mp4" type="video/mp4" />
+         </video>
+         <div className="absolute inset-0 bg-[#2c1810]/70 flex items-center">
           <div className="container mx-auto px-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
               <div className="text-[#d97836] text-sm font-semibold uppercase tracking-widest mb-3">About Us</div>
