@@ -1,14 +1,22 @@
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { Award, Calendar, Heart, Target, Users, Volume2, VolumeX } from 'lucide-react';
-import { useState, useRef } from 'react';
+import { Calendar, Heart, Target, Users, Award } from 'lucide-react';
+
+const values = [
+  { icon: Heart, title: 'Compassion', desc: 'Every painted dog deserves protection. We treat each animal with the highest care and respect.' },
+  { icon: Target, title: 'Science-Led', desc: 'Our conservation decisions are guided by rigorous research and field data.' },
+  { icon: Users, title: 'Community First', desc: 'Lasting conservation only succeeds when local communities are partners, not bystanders.' },
+  { icon: Award, title: 'Excellence', desc: 'We hold ourselves to the highest standards of conservation practice and transparency.' },
+];
 
 const team = [
-  { name: 'Peter Blinston', role: 'Executive Director', bio: 'Leading PDC for over 20 years, Peter has dedicated his life to painted dog conservation in Zimbabwe.', image: 'https://images.unsplash.com/photo-1670259182436-049da7055bc3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aWxkbGlmZSUyMGNvbnNlcnZhdGlvbiUyMHRlYW0lMjBaaW1iYWJ3ZSUyMEFmcmljYXxlbnwxfHx8fDE3NzY5NzMwNzd8MA&ixlib=rb-4.1.0&q=80&w=400' },
-  { name: 'Dr. Rosie Groom', role: 'Conservation Director', bio: 'A PhD in ecology with 15 years of research experience on painted dog territories and behavior.', image: 'https://images.unsplash.com/photo-1734246954912-6eaf197506e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2ElMjB3aWxkbGlmZSUyMHZvbHVudGVlciUyMHJhbmdlciUyMGNvbnNlcnZhdGlvbnxlbnwxfHx8fDE3NzY5NzMwODF8MA&ixlib=rb-4.1.0&q=80&w=400' },
-  { name: 'Jealous Mpofu', role: 'Community Liaison', bio: 'Born in Hwange, Jealous bridges the gap between local communities and conservation programs.', image: 'https://images.unsplash.com/photo-1587285758914-4b47d29bca46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjBlZHVjYXRpb24lMjBjaGlsZHJlbiUyMGFmcmljYSUyMHdpbGRsaWZlfGVufDF8fHx8MTc3Njk3MzA4MXww&ixlib=rb-4.1.0&q=80&w=400' },
+  { name: 'Peter Blinston', role: 'Executive Director', bio: 'Overseeing our education programs and the Children\'s Bush Camp at PDC.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578025/Peter_Blinston_dga14t.jpg' },
+  { name: 'Wilton Nsimango', role: 'Education and Community Development Programs Director', bio: 'Dedicated to teaching children about wildlife conservation and ecological balance.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578026/Wilton_Nsimango_fvxtgx.jpg' },
+  { name: 'David Kuvawoga', role: 'Director of Operations', bio: 'Managing the administrative backbone of our operations in Zimbabwe.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778577982/David_Kuvawoga_gg0jq7.jpg' },
+  
 ];
+
 
 const milestones = [
   { year: '1992', event: 'Painted Dog Conservation founded by Peter Blinston in Hwange' },
@@ -19,48 +27,26 @@ const milestones = [
   { year: '2022', event: '30th anniversary — 500+ painted dogs under active protection' },
 ];
 
-const values = [
-  { icon: Heart, title: 'Compassion', desc: 'Every painted dog deserves protection. We treat each animal with the highest care and respect.' },
-  { icon: Target, title: 'Science-Led', desc: 'Our conservation decisions are guided by rigorous research and field data.' },
-  { icon: Users, title: 'Community First', desc: 'Lasting conservation only succeeds when local communities are partners, not bystanders.' },
-  { icon: Award, title: 'Excellence', desc: 'We hold ourselves to the highest standards of conservation practice and transparency.' },
-];
-
 export function WhoWeAre() {
-  const [isMuted, setIsMuted] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
-
   return (
     <div>
       {/* Hero */}
-       <section className="relative h-72 md:h-96 overflow-hidden">
-          <video ref={videoRef} autoPlay loop playsInline muted className="w-full h-full object-cover" title="What is Painted Dog Conservation all about">
-            <source src="https://res.cloudinary.com/dpahyb1x9/video/upload/v1780406485/What_is_Painted_Dog_Conservation_all_about__jgzyf0.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-[#2c1810]/70 flex items-center">
-           <div className="container mx-auto px-6">
-             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-               <div className="text-[#d97836] text-sm font-semibold uppercase tracking-widest mb-3">About Us</div>
-               <h1 className="text-5xl font-bold text-white mb-3">Who We Are</h1>
-               <p className="text-white/70 max-w-xl">Three decades of passionate conservation in the heart of Zimbabwe</p>
-             </motion.div>
-           </div>
-         </div>
-         <button
-           onClick={toggleMute}
-           className="absolute bottom-4 right-4 z-20 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all"
-           aria-label={isMuted ? "Unmute video" : "Mute video"}
-         >
-           {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-         </button>
-       </section>
+      <section className="relative h-72 md:h-96 overflow-hidden">
+        <ImageWithFallback
+          src="https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578005/image-asset_15_tdt4sp.jpg"
+          alt="Who We Are"
+          className="w-full h-full object-contain"
+        />
+        <div className="absolute inset-0 bg-[#2c1810]/70 flex items-center">
+          <div className="container mx-auto px-6">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+              <div className="text-[#d97836] text-sm font-semibold uppercase tracking-widest mb-3">About Us</div>
+              <h1 className="text-5xl font-bold text-white mb-3">Who We Are</h1>
+              <p className="text-white/70 max-w-xl">Three decades of passionate conservation in the heart of Zimbabwe</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       {/* Mission */}
       <section className="py-16 bg-white">
@@ -91,7 +77,7 @@ export function WhoWeAre() {
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="rounded-3xl overflow-hidden aspect-[4/3]">
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1623952625109-6c47a93f675c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwd2lsZGVybmVzcyUyMG5hdGlvbmFsJTIwcGFyayUyMGxhbmRzY2FwZXxlbnwxfHx8fDE3NzY5NzMwNzh8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                src="https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578028/pdc_yacmeq.png"
                 alt="Zimbabwe wilderness"
                 className="w-full h-full object-cover"
               />
@@ -129,12 +115,13 @@ export function WhoWeAre() {
         </div>
       </section>
 
+
       {/* Team */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-[#2c1810] mb-3">Our Leadership Team</h2>
-            <p className="text-[#8b6f47]">The passionate individuals driving our mission forward</p>
+          
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {team.map((member, i) => (
@@ -165,6 +152,7 @@ export function WhoWeAre() {
         </div>
       </section>
 
+      
       {/* Timeline */}
       <section className="py-16 bg-[#2c1810]">
         <div className="container mx-auto px-6">

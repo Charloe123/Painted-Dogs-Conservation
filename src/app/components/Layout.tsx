@@ -7,6 +7,7 @@ const navLinks = [
   {
     label: 'About',
     children: [
+      { label: 'Meet Our Team', href: '/meet-our-team' },
       { label: 'Who We Are', href: '/who-we-are' },
       { label: 'About Painted Dogs', href: '/about-painted-dogs' },
       { label: 'Conservation Programs', href: '/conservation-programs' },
@@ -217,12 +218,12 @@ export function Layout() {
             <div>
               <h4 className="font-semibold text-[#ef702a] mb-4 text-sm uppercase tracking-wider">About</h4>
               <ul className="space-y-2.5 text-sm text-white/70">
-                {[
-                  ['Who We Are', '/who-we-are'],
-                  ['About Painted Dogs', '/about-painted-dogs'],
-                  ['Conservation Programs', '/conservation-programs'],
-                  ['Our Team', '/who-we-are'],
-                ].map(([label, href]) => (
+{[
+                   ['Meet Our Team', '/meet-our-team'],
+                   ['Who We Are', '/who-we-are'],
+                   ['About Painted Dogs', '/about-painted-dogs'],
+                   ['Conservation Programs', '/conservation-programs'],
+                 ].map(([label, href]) => (
                   <li key={label}>
                     <Link to={href} className="hover:text-[#ef702a] transition-colors">{label}</Link>
                   </li>

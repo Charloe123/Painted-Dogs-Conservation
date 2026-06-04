@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './pages/Home';
 import { WhoWeAre } from './pages/WhoWeAre';
+import { MeetOurTeam } from './pages/MeetOurTeam';
 import { AboutPaintedDogs } from './pages/AboutPaintedDogs';
 import { FAQ } from './pages/FAQ';
 import { Blog } from './pages/Blog';
@@ -19,6 +20,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: 'who-we-are', Component: WhoWeAre },
+      { path: 'meet-our-team', Component: MeetOurTeam },
       { path: 'about-painted-dogs', Component: AboutPaintedDogs },
       { path: 'faq', Component: FAQ },
       { path: 'blog', Component: Blog },
