@@ -1,7 +1,8 @@
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { Award, Calendar, Heart, Target, Users } from 'lucide-react';
+import { Award, Calendar, Heart, Target, Users, Volume2, VolumeX } from 'lucide-react';
+import { useState, useRef } from 'react';
 
 const team = [
   { name: 'Peter Blinston', role: 'Executive Director', bio: 'Leading PDC for over 20 years, Peter has dedicated his life to painted dog conservation in Zimbabwe.', image: 'https://images.unsplash.com/photo-1670259182436-049da7055bc3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aWxkbGlmZSUyMGNvbnNlcnZhdGlvbiUyMHRlYW0lMjBaaW1iYWJ3ZSUyMEFmcmljYXxlbnwxfHx8fDE3NzY5NzMwNzd8MA&ixlib=rb-4.1.0&q=80&w=400' },
@@ -26,23 +27,40 @@ const values = [
 ];
 
 export function WhoWeAre() {
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
   return (
     <div>
       {/* Hero */}
        <section className="relative h-72 md:h-96 overflow-hidden">
-         <video autoPlay loop playsInline className="w-full h-full object-cover" title="What is Painted Dog Conservation all about">
-           <source src="https://res.cloudinary.com/dpahyb1x9/video/upload/v1780406485/What_is_Painted_Dog_Conservation_all_about__jgzyf0.mp4" type="video/mp4" />
-         </video>
-         <div className="absolute inset-0 bg-[#2c1810]/70 flex items-center">
-          <div className="container mx-auto px-6">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <div className="text-[#d97836] text-sm font-semibold uppercase tracking-widest mb-3">About Us</div>
-              <h1 className="text-5xl font-bold text-white mb-3">Who We Are</h1>
-              <p className="text-white/70 max-w-xl">Three decades of passionate conservation in the heart of Zimbabwe</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+          <video ref={videoRef} autoPlay loop playsInline muted className="w-full h-full object-cover" title="What is Painted Dog Conservation all about">
+            <source src="https://res.cloudinary.com/dpahyb1x9/video/upload/v1780406485/What_is_Painted_Dog_Conservation_all_about__jgzyf0.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-[#2c1810]/70 flex items-center">
+           <div className="container mx-auto px-6">
+             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+               <div className="text-[#d97836] text-sm font-semibold uppercase tracking-widest mb-3">About Us</div>
+               <h1 className="text-5xl font-bold text-white mb-3">Who We Are</h1>
+               <p className="text-white/70 max-w-xl">Three decades of passionate conservation in the heart of Zimbabwe</p>
+             </motion.div>
+           </div>
+         </div>
+         <button
+           onClick={toggleMute}
+           className="absolute bottom-4 right-4 z-20 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all"
+           aria-label={isMuted ? "Unmute video" : "Mute video"}
+         >
+           {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+         </button>
+       </section>
 
       {/* Mission */}
       <section className="py-16 bg-white">

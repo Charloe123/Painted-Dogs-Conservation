@@ -1,7 +1,8 @@
 import { Link } from 'react-router';
-import { Heart, Users, BookOpen, TrendingUp, Award, ArrowRight, Shield, Camera, Globe, Star } from 'lucide-react';
+import { Heart, Users, BookOpen, TrendingUp, Award, ArrowRight, Shield, Camera, Globe, Star, Volume2, VolumeX } from 'lucide-react';
 import { motion } from 'motion/react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { useState, useRef } from 'react';
 
 const stats = [
   { value: '7,000', label: 'Wild painted dogs remaining', icon: '🐾' },
@@ -35,15 +36,32 @@ const newsItems = [
 ];
 
 export function Home() {
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
   return (
     <div>
       {/* Hero Section */}
       <section className="relative h-[85vh] min-h-[500px] overflow-hidden">
         <div className="absolute inset-0">
-          <video autoPlay loop playsInline className="w-full h-full object-cover">
+          <video ref={videoRef} autoPlay loop playsInline muted className="w-full h-full object-cover">
             <source src="https://res.cloudinary.com/dpahyb1x9/video/upload/v1780406485/What_is_Painted_Dog_Conservation_all_about__jgzyf0.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/60" />
+          <button
+            onClick={toggleMute}
+            className="absolute bottom-4 right-4 z-20 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all"
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
+          >
+            {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+          </button>
         </div>
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 flex flex-col items-center gap-2">
