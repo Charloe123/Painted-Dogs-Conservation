@@ -4,15 +4,15 @@ import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 
 const team = [
   { name: 'Ronnie Sibanda', role: 'Education Manager', bio: 'Overseeing our education programs and the Children\'s Bush Camp at PDC.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578025/Ronnie_ypqwi4.jpg' },
-  { name: 'Ganizani Phiri', role: 'Education Officer', bio: 'Dedicated to teaching children about wildlife conservation and ecological balance.', image: '' },
-  { name: 'Maria Njamba', role: 'Administration', bio: 'Managing the administrative backbone of our operations in Zimbabwe.', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80' },
-  { name: 'Last Marozhe', role: 'Anti-Poaching Manager', bio: 'Leading our community scout teams to protect painted dogs from illegal snaring.', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80' },
-  { name: 'Jealous Mpofu', role: 'Community Liaison', bio: 'Born in Hwange, Jealous bridges the gap between local communities and conservation programs.', image: 'https://images.unsplash.com/photo-1587285758914-4b47d29bca46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjBlZHVjYXRpb24lMjBjaGlsZHJlbiUyMGFmcmljYSUyMHdpbGRsaWZlfGVufDF8fHx8MTc3Njk3MzA4MXww&ixlib=rb-4.1.0&q=80&w=400' },
-  { name: 'Doubt Nkomo', role: 'Tracker', bio: 'Expert tracker monitoring pack movements and health across Hwange.', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80' },
-  { name: 'Agnes Ncube', role: 'Administrative Assistant', bio: 'Supporting our field and office teams with vital administrative tasks.', image: 'https://images.unsplash.com/photo-1567532939604-b6c5b0ad2e01?w=400&q=80' },
-  { name: 'Wendy Blakeley', role: 'Operations Manager', bio: 'Ensuring smooth operations and coordination across all conservation programs.', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80' },
-  { name: 'Sanelisiwe E Mlilo', role: 'Education Officer', bio: 'Helping young people connect with nature through hands-on education.', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80' },
-  { name: 'Enock Zulu', role: 'Senior Scout', bio: 'Veteran scout with years of experience in anti-poaching and field monitoring.', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80' },
+  { name: 'Ganizani Phiri', role: 'Education Officer', bio: 'Dedicated to teaching children about wildlife conservation and ecological balance.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1780572591/imgi_14_Ganizani_Phiri_y2wmnc.jpg' },
+  { name: 'Maria Njamba', role: 'Administration', bio: 'Managing the administrative backbone of our operations in Zimbabwe.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578020/MAria_Njamba_w9rr6g.jpg' },
+  { name: 'Last Marozhe', role: 'Anti-Poaching Manager', bio: 'Leading our community scout teams to protect painted dogs from illegal snaring.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578020/Last_Marozhe_j9koe8.jpg' },
+  { name: 'Jealous Mpofu', role: 'Community Liaison', bio: 'Born in Hwange, Jealous bridges the gap between local communities and conservation programs.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578021/Jealous_Mpofu_Chief_Tracker_meigcu.jpg' },
+  { name: 'Doubt Nkomo', role: 'Tracker', bio: 'Expert tracker monitoring pack movements and health across Hwange.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1780572591/imgi_10_Doubt_Nkomo_pkfu7g.jpg' },
+  { name: 'Agnes Ncube', role: 'Administrative Assistant', bio: 'Supporting our field and office teams with vital administrative tasks.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778577981/Agnes_Ncube_o3vcea.jpg' },
+  { name: 'Wendy Blakeley', role: 'Operations Manager', bio: 'Ensuring smooth operations and coordination across all conservation programs.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578025/wendy_by_MP_feb._2005_myugaa.jpg' },
+  { name: 'Sanelisiwe E Mlilo', role: 'Education Officer', bio: 'Helping young people connect with nature through hands-on education.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778577988/Emma1_2_rktdss.jpg' },
+  { name: 'Enock Zulu', role: 'Senior Scout', bio: 'Veteran scout with years of experience in anti-poaching and field monitoring.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778577987/Enock_Zulu_twzo5v.jpg' },
 ];
 
 export function MeetOurTeam() {
@@ -30,7 +30,7 @@ export function MeetOurTeam() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
               <div className="text-[#d97836] text-sm font-semibold uppercase tracking-widest mb-3">Our Team</div>
               <h1 className="text-5xl font-bold text-white mb-3">Meet Our Team</h1>
-              <p className="text-white/70 max-w-xl">The passionate individuals driving our mission forward</p>
+            
             </motion.div>
           </div>
         </div>
