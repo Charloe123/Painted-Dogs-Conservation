@@ -218,15 +218,20 @@ export function Contact() {
         </div>
       </section>
 
-      {/* Map placeholder */}
-      <section className="py-0">
-        <div className="h-64 bg-[#2c1810] flex items-center justify-center relative overflow-hidden">
-          <div className="text-center text-white">
-            <MapPin className="w-10 h-10 text-[#d97836] mx-auto mb-3" />
-            <div className="font-bold text-lg">Hwange National Park, Zimbabwe</div>
-            <div className="text-white/50 text-sm">18.3°S, 26.5°E</div>
-          </div>
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1623952625109-6c47a93f675c?w=1920&q=60')] bg-cover bg-center opacity-20" />
+      {/* Map */}
+      <section className="bg-white pt-12">
+        <h3 className="text-2xl font-bold text-[#2c1810] mb-6 text-center container mx-auto px-6">Find Us in Hwange National Park</h3>
+        <div className="h-80 md:h-96">
+          <iframe
+            src="https://www.google.com/maps?q=Hwange+National+Park,+Zimbabwe&output=embed"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Hwange National Park Location"
+          />
         </div>
       </section>
     </div>

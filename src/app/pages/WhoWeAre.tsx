@@ -33,9 +33,9 @@ export function WhoWeAre() {
       {/* Hero */}
       <section className="relative h-72 md:h-96 overflow-hidden">
         <ImageWithFallback
-          src="https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578005/image-asset_15_tdt4sp.jpg"
+          src="https://res.cloudinary.com/dpahyb1x9/image/upload/v1778577980/APU-_Women_Scouts_j1lefe.jpg"
           alt="Who We Are"
-          className="w-full h-full object-contain"
+          className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-[#2c1810]/70 flex items-center">
           <div className="container mx-auto px-6">

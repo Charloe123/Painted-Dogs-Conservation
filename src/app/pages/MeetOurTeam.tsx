@@ -26,7 +26,7 @@ export function MeetOurTeam() {
         <ImageWithFallback
           src="https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578027/PDC_Team_ijdbao.jpg"
           alt="PDC Team"
-          className="w-full h-full object-cover"
+          className="w-100% h-full object-cover"
         />
         <div className="absolute inset-0 bg-[#2c1810]/70 flex items-center">
           <div className="container mx-auto px-6">
