@@ -2,7 +2,44 @@ import { Link } from 'react-router';
 import { Heart, Users, BookOpen, TrendingUp, Award, ArrowRight, Shield, Camera, Globe, Star, Volume2, VolumeX } from 'lucide-react';
 import { motion } from 'motion/react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+
+// Animated Counter Component
+interface CounterProps {
+  target: number;
+  suffix?: string;
+  duration?: number;
+}
+
+const AnimatedCounter = ({ target, suffix = '', duration = 20 }: CounterProps) => {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    if (hasAnimated) return;
+    
+    const startTime = Date.now();
+    const interval = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / (duration * 1000), 1);
+      
+      setCount(Math.floor(target * progress));
+      
+      if (progress === 1) {
+        clearInterval(interval);
+        setHasAnimated(true);
+      }
+    }, 30);
+
+    return () => clearInterval(interval);
+  }, [target, duration, hasAnimated]);
+
+  return (
+    <span>
+      {count.toLocaleString()}{suffix}
+    </span>
+  );
+};
 
 const stats = [
   { value: '7,000', label: 'Wild painted dogs remaining', icon: '🐾' },
@@ -164,8 +201,14 @@ export function Home() {
               <div>
                 <Shield className="w-12 h-12 mb-4 text-[#ef702a]" />
                 <h3 className="text-3xl font-bold mb-4">Our Mission</h3>
-                <p className="text-white/70 text-base leading-relaxed mb-6">
-                  Painted Dog Conservation works to ensure the long-term survival of the endangered African painted dog through on-the-ground conservation, community education, and scientific research across Zimbabwe.
+                <p className="text-white/70 text-sm leading-relaxed mb-6">
+                  Our mission is to protect and increase the range and numbers of painted dogs. 
+How are we trying to do this?
+We have put together a conservation model that will really work in the long term, and make a significant difference to the painted dog population in Zimbabwe. We employ more than 60 people from the local villages to run our conservation programs and run our education and outreach programs. 
+
+These efforts span everything from our Anti-Poaching Unit team which patrols local areas daily to provide a direct form of protection for the dogs, we run our Rehabilitation Facility where we treat injured and orphaned dogs before returning them to the wild..... 
+
+
                 </p>
               </div>
               <Link
@@ -181,7 +224,7 @@ export function Home() {
           {/* Stat: Population */}
           <motion.div whileHover={{ scale: 1.04 }} className="bg-[#ef702a] rounded-3xl p-6 text-white relative overflow-hidden group cursor-pointer">
             <TrendingUp className="w-8 h-8 mb-3 opacity-80" />
-            <div className="text-4xl font-bold mb-1">45%</div>
+            <div className="text-4xl font-bold mb-1"><AnimatedCounter target={45} suffix="%" /></div>
             <p className="text-sm text-white/80">Population increase in protected areas over 10 years</p>
             <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-white/10 rounded-full group-hover:scale-150 transition-transform" />
           </motion.div>
@@ -189,7 +232,7 @@ export function Home() {
           {/* Stat: Education */}
           <motion.div whileHover={{ scale: 1.04 }} className="bg-[#974d4a] rounded-3xl p-6 text-white relative overflow-hidden group cursor-pointer">
             <BookOpen className="w-8 h-8 mb-3 opacity-80" />
-            <div className="text-4xl font-bold mb-1">25K+</div>
+            <div className="text-4xl font-bold mb-1"><AnimatedCounter target={25000} suffix="+" /></div>
             <p className="text-sm text-white/80">Children reached through our education programs</p>
             <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-white/10 rounded-full group-hover:scale-150 transition-transform" />
           </motion.div>
@@ -208,42 +251,6 @@ export function Home() {
                 <p className="text-sm text-white/70 mt-1">Painted dogs have the highest hunting success rate of any African predator — up to 80%</p>
               </div>
             </div>
-          </motion.div>
-
-          {/* Community */}
-          <motion.div whileHover={{ scale: 1.04 }} className="bg-[#ff6600] rounded-3xl p-6 text-white relative overflow-hidden group cursor-pointer">
-            <Users className="w-8 h-8 mb-3 opacity-80" />
-            <div className="text-4xl font-bold mb-1">150+</div>
-            <p className="text-sm text-white/80">Local communities engaged in conservation</p>
-            <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-white/10 rounded-full group-hover:scale-150 transition-transform" />
-          </motion.div>
-
-          {/* Award */}
-          <motion.div whileHover={{ scale: 1.04 }} className="bg-gradient-to-br from-[#ef702a] to-[#974d4a] rounded-3xl p-6 text-white cursor-pointer">
-            <Award className="w-8 h-8 mb-3" />
-            <h3 className="text-xl font-bold mb-2">Award Winning</h3>
-            <p className="text-sm text-white/80">Globally recognized for conservation excellence since 1992</p>
-          </motion.div>
-
-          {/* Get Involved */}
-          <motion.div whileHover={{ scale: 1.01 }} className="md:col-span-2 md:row-span-2 bg-white rounded-3xl p-8 relative overflow-hidden group cursor-pointer border-2 border-[#ff6600]">
-            <Heart className="w-10 h-10 mb-4 text-[#ef702a]" />
-            <h3 className="text-2xl font-bold mb-3 text-black">Get Involved</h3>
-            <p className="text-[#974d4a] mb-6 text-sm leading-relaxed">
-              Every contribution helps protect painted dogs and their habitat. Choose how you want to make a difference today.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link to="/donate" className="bg-[#ef702a] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#ff6600] transition-all">
-                Donate Now
-              </Link>
-              <Link to="/conservation-programs" className="border-2 border-[#ef702a] text-[#ef702a] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#ef702a] hover:text-white transition-all">
-                Volunteer
-              </Link>
-              <Link to="/donate" className="border-2 border-[#ff6600] text-[#ff6600] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#ff6600] hover:text-white transition-all">
-                Adopt a Dog
-              </Link>
-            </div>
-            <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-[#ef702a] rounded-full opacity-5 group-hover:scale-150 transition-transform" />
           </motion.div>
 
           {/* Research */}
@@ -265,6 +272,25 @@ export function Home() {
               </Link>
             </div>
           </motion.div>
+
+          {/* Community */}
+          <motion.div whileHover={{ scale: 1.04 }} className="bg-[#ff6600] rounded-3xl p-6 text-white relative overflow-hidden group cursor-pointer">
+            <Users className="w-8 h-8 mb-3 opacity-80" />
+            <div className="text-4xl font-bold mb-1"><AnimatedCounter target={150} suffix="+" /></div>
+            <p className="text-sm text-white/80">Local communities engaged in conservation</p>
+            <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-white/10 rounded-full group-hover:scale-150 transition-transform" />
+          </motion.div>
+
+          {/* Award */}
+          <motion.div whileHover={{ scale: 1.04 }} className="bg-gradient-to-br from-[#ef702a] to-[#974d4a] rounded-3xl p-6 text-white cursor-pointer">
+            <Award className="w-8 h-8 mb-3" />
+            <h3 className="text-xl font-bold mb-2">Award Winning</h3>
+            <p className="text-sm text-white/80">Globally recognized for conservation excellence since 1992</p>
+          </motion.div>
+
+         
+          
+         
         </div>
       </section>
 
