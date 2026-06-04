@@ -11,7 +11,7 @@ interface CounterProps {
   duration?: number;
 }
 
-const AnimatedCounter = ({ target, suffix = '', duration = 20 }: CounterProps) => {
+const AnimatedCounter = ({ target, suffix = '', duration = 25 }: CounterProps) => {
   const [count, setCount] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
 
@@ -42,10 +42,10 @@ const AnimatedCounter = ({ target, suffix = '', duration = 20 }: CounterProps) =
 };
 
 const stats = [
-  { value: '7,000', label: 'Wild painted dogs remaining', icon: '🐾' },
-  { value: '45%', label: 'Population increase in protected areas', icon: '📈' },
-  { value: '25K+', label: 'Children reached through education', icon: '📚' },
-  { value: '150+', label: 'Communities engaged', icon: '🤝' },
+  { target: 7000, suffix: '', label: 'Wild painted dogs remaining', icon: '🐾' },
+  { target: 45, suffix: '%', label: 'Population increase in protected areas', icon: '📈' },
+  { target: 25000, suffix: '+', label: 'Children reached through education', icon: '📚' },
+  { target: 150, suffix: '+', label: 'Communities engaged', icon: '🤝' },
 ];
 
 const newsItems = [
@@ -176,7 +176,9 @@ export function Home() {
                 className="text-center"
               >
                 <div className="text-2xl mb-1">{stat.icon}</div>
-                <div className="text-3xl font-bold text-[#ef702a]">{stat.value}</div>
+                <div className="text-3xl font-bold text-[#ef702a]">
+                  <AnimatedCounter target={stat.target} suffix={stat.suffix} />
+                </div>
                 <div className="text-white/60 text-xs mt-1">{stat.label}</div>
               </motion.div>
             ))}
