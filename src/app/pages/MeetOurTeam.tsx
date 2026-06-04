@@ -3,6 +3,9 @@ import { motion } from 'motion/react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 
 const team = [
+  { name: 'Peter Blinston', role: 'Executive Director', bio: 'Overseeing our education programs and the Children\'s Bush Camp at PDC.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578025/Peter_Blinston_dga14t.jpg' },
+  { name: 'Wilton Nsimango', role: 'Education and Community Development Programs Director', bio: 'Dedicated to teaching children about wildlife conservation and ecological balance.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578026/Wilton_Nsimango_fvxtgx.jpg' },
+  { name: 'David Kuvawoga', role: 'Director of Operations', bio: 'Managing the administrative backbone of our operations in Zimbabwe.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778577982/David_Kuvawoga_gg0jq7.jpg' },
   { name: 'Ronnie Sibanda', role: 'Education Manager', bio: 'Overseeing our education programs and the Children\'s Bush Camp at PDC.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578025/Ronnie_ypqwi4.jpg' },
   { name: 'Ganizani Phiri', role: 'Education Officer', bio: 'Dedicated to teaching children about wildlife conservation and ecological balance.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1780572591/imgi_14_Ganizani_Phiri_y2wmnc.jpg' },
   { name: 'Maria Njamba', role: 'Administration', bio: 'Managing the administrative backbone of our operations in Zimbabwe.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578020/MAria_Njamba_w9rr6g.jpg' },
