@@ -27,16 +27,16 @@ export function WhoWeAre() {
       {/* Hero */}
       <section className="relative h-72 md:h-96 overflow-hidden">
         <ImageWithFallback
-          src="https://res.cloudinary.com/dpahyb1x9/image/upload/v1778577980/APU-_Women_Scouts_j1lefe.jpg"
+          src="https://res.cloudinary.com/dpahyb1x9/image/upload/v1780990454/imgi_193_Playtime_g6wvae.jpg"
           alt="Who We Are"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#2c1810]/70 flex items-center">
+        <div className="absolute inset-0  flex items-center">
           <div className="container mx-auto px-6">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
               <div className="text-[#d97836] text-sm font-semibold uppercase tracking-widest mb-3">About Us</div>
               <h1 className="text-5xl font-bold text-white mb-3">Who We Are</h1>
-              <p className="text-white/70 max-w-xl">Three decades of passionate conservation in the heart of Zimbabwe</p>
+              <p className="text-[#d97836] max-w-xl">Three decades of passionate conservation in the heart of Zimbabwe</p>
             </motion.div>
           </div>
         </div>
