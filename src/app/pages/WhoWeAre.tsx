@@ -10,12 +10,6 @@ const values = [
   { icon: Award, title: 'Excellence', desc: 'We hold ourselves to the highest standards of conservation practice and transparency.' },
 ];
 
-const team = [
-  { name: 'Peter Blinston', role: 'Executive Director', bio: 'Overseeing our education programs and the Children\'s Bush Camp at PDC.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578025/Peter_Blinston_dga14t.jpg' },
-  { name: 'Wilton Nsimango', role: 'Education and Community Development Programs Director', bio: 'Dedicated to teaching children about wildlife conservation and ecological balance.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778578026/Wilton_Nsimango_fvxtgx.jpg' },
-  { name: 'David Kuvawoga', role: 'Director of Operations', bio: 'Managing the administrative backbone of our operations in Zimbabwe.', image: 'https://res.cloudinary.com/dpahyb1x9/image/upload/v1778577982/David_Kuvawoga_gg0jq7.jpg' },
-  
-];
 
 
 const milestones = [
@@ -114,44 +108,6 @@ export function WhoWeAre() {
           </div>
         </div>
       </section>
-
-
-      {/* Team */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-[#2c1810] mb-3">Our Leadership Team</h2>
-          
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ y: -6 }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-[#f5f1e8] rounded-3xl overflow-hidden group"
-              >
-                <div className="h-64 overflow-hidden">
-                  <ImageWithFallback
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <div className="text-[#d97836] text-xs font-semibold uppercase tracking-wider mb-1">{member.role}</div>
-                  <h3 className="text-xl font-bold text-[#2c1810] mb-2">{member.name}</h3>
-                  <p className="text-[#8b6f47] text-sm leading-relaxed">{member.bio}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       
       {/* Timeline */}
       <section className="py-16 bg-[#2c1810]">
